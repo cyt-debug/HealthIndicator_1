@@ -254,13 +254,13 @@ function bmi(){
   if(!h || !w || h<=0 || w<=0) return null;
   return w/((h/100)*(h/100));
 }
-function bmiText(){const b=bmi();return b===null?'未能計算':b.toFixed(1);}
+function bmiText(){const b=bmi();return b===null?'未能計算':String(Math.round(b));}
 function updateBMI(){
   const t=bmiText(); ['bmi7','bmi8','bmi9','bmi10'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=t;});
 }
 function qSpeech(){
   const b=bmi();
-  return pages[current-1].dataset.speech.replaceAll('__BMI__', b===null?'未能計算':b.toFixed(1));
+  return pages[current-1].dataset.speech.replaceAll('__BMI__', b===null?'未能計算':String(Math.round(b)));
 }
 function speak(text,onend=null){
   if(!speechAvailable){if(onend)setTimeout(onend,0);return;}
